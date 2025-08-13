@@ -1,0 +1,62 @@
+
+:root{
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#64748b; --primary:#0f172a;
+  --border:#e2e8f0; --accent:#f1f5f9; --ring:#94a3b8; --ok:#059669; --bad:#dc2626;
+  --shadow:0 6px 24px rgba(15,23,42,.08);
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial;
+  background:var(--bg); color:var(--text);}
+.container{max-width:1120px;margin:0 auto;padding:16px}
+.header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.8);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--border)}
+.flex{display:flex;align-items:center}
+.space-between{justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center}
+.badge{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,#0ea5e9,#10b981);display:grid;place-items:center;color:#fff;font-weight:800}
+.small{font-size:12px;color:var(--muted)}
+.btn{border-radius:999px;padding:10px 14px;font-weight:600;border:1px solid transparent;background:var(--primary);color:#fff;box-shadow:var(--shadow);cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn:active{filter:brightness(.95)}
+.btn-outline{background:#fff;border-color:var(--border);color:var(--text);box-shadow:none}
+.btn-outline:hover{background:var(--accent)}
+.hero{background:linear-gradient(135deg,#f0f9ff,#ecfeff);border-bottom:1px solid var(--border)}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
+.tile{background:#fff;border-radius:24px;border:1px solid var(--border);padding:24px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.cards{grid-template-columns:repeat(1,minmax(0,1fr))}
+@media(min-width:640px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1024px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1280px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow)}
+.card h3{margin:8px 0 6px;font-size:16px;min-height:40px}
+.price{font-weight:800;font-size:18px}
+.stock{font-size:12px}
+.stock.ok{color:var(--ok)} .stock.bad{color:var(--bad)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.tag{border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:12px}
+.actions{display:flex;gap:8px;margin-top:6px}
+.img{aspect-ratio:4/3;background:linear-gradient(135deg,#e2e8f0,#f1f5f9);border-radius:12px;display:grid;place-items:center}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-size:14px;background:#fff;cursor:pointer}
+.pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.search{position:relative}
+.search input{width:320px;max-width:100%;border:1px solid var(--border);border-radius:999px;padding:10px 36px 10px 14px}
+.search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.5}
+.footer{border-top:1px solid var(--border);background:#fff;margin-top:24px}
+.footer .cols{display:grid;gap:12px}
+@media(min-width:900px){.footer .cols{grid-template-columns:2fr 1fr}}
+.center-empty{grid-column:1/-1;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:16px;padding:32px;background:#fff}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:grid;place-items:center;z-index:50}
+.modal{width:min(680px,92vw);background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:20px;border:1px solid var(--border)}
+.modal h2{margin:0 0 6px}
+.form{display:grid;gap:10px;margin-top:10px}
+.form label{font-size:14px;font-weight:600}
+.form input,.form textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;outline:none}
+.form input:focus,.form textarea:focus{box-shadow:0 0 0 3px rgba(148,163,184,.35)}
+.hero-buttons{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.qr{font-size:12px;color:var(--muted);}
