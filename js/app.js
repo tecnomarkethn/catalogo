@@ -12,9 +12,9 @@ const CATEGORIES = [
 
 const PRODUCTS = [
   { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, image: "assets/latitude7300.jpg", features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
-  { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
-  { id: "p3", name: "Router Wi‑Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU‑MIMO"] },
-  { id: "p4", name: "Headset USB con micrófono", category: "accesorios", price: 999, stock: 15, features: ["Cancelación de ruido","Ligero","Ajustable"] },
+  { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, "assets/latitude3310.jpg", features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
+  { id: "p3", name: "Router Wi‑Fi 6 AX3000", category: "redes", price: 4599, stock: 8, "assets/latitude3310.jpg", features: ["Doble banda","OFDMA","MU‑MIMO"] },
+  { id: "p4", name: "Headset USB con micrófono", category: "accesorios", price: 999, stock: 15, "assets/latitude3310.jpg", features: ["Cancelación de ruido","Ligero","Ajustable"] },
   { id: "p5", name: "Licencia Office 365 Personal (1 año)", category: "software", price: 2299, stock: 20, features: ["Word, Excel, PowerPoint","1TB OneDrive"] },
   { id: "p6", name: "iPhone 13 128GB (Libre)", category: "celulares", price: 14290, stock: 5, features: ["Pantalla 6.1","Cámara dual 12MP","iOS"] },
   { id: "p7", name: "Mouse inalámbrico 2.4G", category: "accesorios", price: 399, stock: 30, features: ["1200 DPI","USB Nano","Bajo consumo"] },
