@@ -11,14 +11,14 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, image: "assets/latitude7300.jpg", features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
+  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
   { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
-  { id: "p3", name: "Router Wi-Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU-MIMO"] },
+  { id: "p3", name: "Router Wi‑Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU‑MIMO"] },
   { id: "p4", name: "Headset USB con micrófono", category: "accesorios", price: 999, stock: 15, features: ["Cancelación de ruido","Ligero","Ajustable"] },
   { id: "p5", name: "Licencia Office 365 Personal (1 año)", category: "software", price: 2299, stock: 20, features: ["Word, Excel, PowerPoint","1TB OneDrive"] },
   { id: "p6", name: "iPhone 13 128GB (Libre)", category: "celulares", price: 14290, stock: 5, features: ["Pantalla 6.1","Cámara dual 12MP","iOS"] },
   { id: "p7", name: "Mouse inalámbrico 2.4G", category: "accesorios", price: 399, stock: 30, features: ["1200 DPI","USB Nano","Bajo consumo"] },
-  { id: "p8", name: "SSD NVMe 1TB (PCIe 3.0)", category: "accesorios", price: 2490, stock: 12, features: ["Lectura 3500MB/s","Escritura 3000MB/s"] },
+  { id: "p8", name: "SSD NVMe 1TB (PCIe 3.0)", category: "accesorios", price: 2490, stock: 12, features: ["Lectura 3500MB/s","Escritura 3000MB/s"] }
 ];
 
 const currency = new Intl.NumberFormat("es-HN", { style: "currency", currency: "HNL" });
@@ -60,23 +60,14 @@ function card(p){
   const price = currency.format(p.price);
   const stockTxt = p.stock > 0 ? `${p.stock} en stock` : "Agotado";
   const stockClass = p.stock > 0 ? "stock ok" : "stock bad";
-  const imgSrc = (p.image && p.image.trim()) ? p.image : "./assets/placeholder.svg";
-
   return el("div", {class:"card"}, [
-    el("div", {class:"img"}, [
-      el("img", {
-        src: imgSrc,
-        alt: p.name,
-        loading: "lazy",
-        style: "max-width:100%;max-height:100%;object-fit:contain"
-      })
-    ]),
+    el("div", {class:"img"}, [el("img", {src:"./assets/placeholder.svg", alt:p.name, style:"height:40px;opacity:.6"})]),
     el("h3", {}, [p.name]),
     el("div", {class:"flex space-between"}, [
       el("span", {class:"price"}, [price]),
       el("span", {class:stockClass}, [stockTxt])
     ]),
-    el("div", {class:"tags"}, (p.features || []).slice(0,3).map(tag)),
+    el("div", {class:"tags"}, p.features.slice(0,3).map(tag)),
     el("div", {class:"actions"}, [
       el("button", {class:"btn", onClick:()=>openModal(p)}, ["Consultar"]),
       el("button", {class:"btn btn-outline", onClick:()=>openWhatsApp(p)}, ["WhatsApp"]),
