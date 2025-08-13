@@ -11,14 +11,23 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
-  { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
-  { id: "p3", name: "Router Wi‑Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU‑MIMO"] },
+  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, image: "assets/latitude7300.jpg", features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
+  { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, image: "assets/latitude3310.jpg", features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
+  { id: "p3", name: "Router Wi-Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU-MIMO"] },
   { id: "p4", name: "Headset USB con micrófono", category: "accesorios", price: 999, stock: 15, features: ["Cancelación de ruido","Ligero","Ajustable"] },
   { id: "p5", name: "Licencia Office 365 Personal (1 año)", category: "software", price: 2299, stock: 20, features: ["Word, Excel, PowerPoint","1TB OneDrive"] },
   { id: "p6", name: "iPhone 13 128GB (Libre)", category: "celulares", price: 14290, stock: 5, features: ["Pantalla 6.1","Cámara dual 12MP","iOS"] },
   { id: "p7", name: "Mouse inalámbrico 2.4G", category: "accesorios", price: 399, stock: 30, features: ["1200 DPI","USB Nano","Bajo consumo"] },
-  { id: "p8", name: "SSD NVMe 1TB (PCIe 3.0)", category: "accesorios", price: 2490, stock: 12, features: ["Lectura 3500MB/s","Escritura 3000MB/s"] }
+  { id: "p8", name: "SSD NVMe 1TB (PCIe 3.0)", category: "accesorios", price: 2490, stock: 12, features: ["Lectura 3500MB/s","Escritura 3000MB/s"] },
+
+  // Nuevos (p9 - p15)
+  { id: "p9",  name: "Dell Latitude 3310 2-in-1", category: "laptops",    price: 12990, stock: 2,  features: ["Core i5 8th Gen","RAM 8GB","SSD 256GB","Pantalla táctil 13.3″"] },
+  { id: "p10", name: "HP Pavilion 15",             category: "laptops",    price: 17500, stock: 4,  features: ["Ryzen 5 5500U","RAM 16GB","SSD 512GB","15.6″ FHD"] },
+  { id: "p11", name: "Xiaomi Redmi Note 12 4/128", category: "celulares",  price: 5990,  stock: 10, features: ["6.67″ AMOLED","Cámara 50MP","Batería 5000 mAh"] },
+  { id: "p12", name: "Samsung Galaxy A54 5G 8/256",category: "celulares",  price: 10500, stock: 6,  features: ["6.4″ Super AMOLED","50MP OIS","IP67"] },
+  { id: "p13", name: "Teclado mecánico RGB",       category: "accesorios", price: 1490,  stock: 12, features: ["Switches azules","Anti-ghosting","Iluminación RGB"] },
+  { id: "p14", name: "Monitor 24″ FHD 75Hz",       category: "accesorios", price: 3990,  stock: 7,  features: ["Panel IPS 24″","75 Hz","HDMI/DP"] },
+  { id: "p15", name: "Switch Gigabit 8 puertos",   category: "redes",      price: 2390,  stock: 9,  features: ["8× RJ45 10/100/1000","Chasis metálico","Fanless"] }
 ];
 
 const currency = new Intl.NumberFormat("es-HN", { style: "currency", currency: "HNL" });
@@ -60,14 +69,23 @@ function card(p){
   const price = currency.format(p.price);
   const stockTxt = p.stock > 0 ? `${p.stock} en stock` : "Agotado";
   const stockClass = p.stock > 0 ? "stock ok" : "stock bad";
+  const imgSrc = (p.image && p.image.trim()) ? p.image : "./assets/placeholder.svg";
+
   return el("div", {class:"card"}, [
-    el("div", {class:"img"}, [el("img", {src:"./assets/placeholder.svg", alt:p.name, style:"height:40px;opacity:.6"})]),
+    el("div", {class:"img"}, [
+      el("img", {
+        src: imgSrc,
+        alt: p.name,
+        loading: "lazy",
+        style: "max-width:100%;max-height:100%;object-fit:contain"
+      })
+    ]),
     el("h3", {}, [p.name]),
     el("div", {class:"flex space-between"}, [
       el("span", {class:"price"}, [price]),
       el("span", {class:stockClass}, [stockTxt])
     ]),
-    el("div", {class:"tags"}, p.features.slice(0,3).map(tag)),
+    el("div", {class:"tags"}, (p.features || []).slice(0,3).map(tag)),
     el("div", {class:"actions"}, [
       el("button", {class:"btn", onClick:()=>openModal(p)}, ["Consultar"]),
       el("button", {class:"btn btn-outline", onClick:()=>openWhatsApp(p)}, ["WhatsApp"]),
