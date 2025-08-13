@@ -19,15 +19,6 @@ const PRODUCTS = [
   { id: "p6", name: "iPhone 13 128GB (Libre)", category: "celulares", price: 14290, stock: 5, features: ["Pantalla 6.1","Cámara dual 12MP","iOS"] },
   { id: "p7", name: "Mouse inalámbrico 2.4G", category: "accesorios", price: 399, stock: 30, features: ["1200 DPI","USB Nano","Bajo consumo"] },
   { id: "p8", name: "SSD NVMe 1TB (PCIe 3.0)", category: "accesorios", price: 2490, stock: 12, features: ["Lectura 3500MB/s","Escritura 3000MB/s"] },
-
-  // Nuevos (p9 - p15)
-  { id: "p9",  name: "Dell Latitude 3310 2-in-1", category: "laptops",    price: 12990, stock: 2, image: "assets/latitude3310.jpg",  features: ["Core i5 8th Gen","RAM 8GB","SSD 256GB","Pantalla táctil 13.3″"] },
-  { id: "p10", name: "HP Pavilion 15",             category: "laptops",    price: 17500, stock: 4,  features: ["Ryzen 5 5500U","RAM 16GB","SSD 512GB","15.6″ FHD"] },
-  { id: "p11", name: "Xiaomi Redmi Note 12 4/128", category: "celulares",  price: 5990,  stock: 10, features: ["6.67″ AMOLED","Cámara 50MP","Batería 5000 mAh"] },
-  { id: "p12", name: "Samsung Galaxy A54 5G 8/256",category: "celulares",  price: 10500, stock: 6,  features: ["6.4″ Super AMOLED","50MP OIS","IP67"] },
-  { id: "p13", name: "Teclado mecánico RGB",       category: "accesorios", price: 1490,  stock: 12, features: ["Switches azules","Anti-ghosting","Iluminación RGB"] },
-  { id: "p14", name: "Monitor 24″ FHD 75Hz",       category: "accesorios", price: 3990,  stock: 7,  features: ["Panel IPS 24″","75 Hz","HDMI/DP"] },
-  { id: "p15", name: "Switch Gigabit 8 puertos",   category: "redes",      price: 2390,  stock: 9,  features: ["8× RJ45 10/100/1000","Chasis metálico","Fanless"] }
 ];
 
 const currency = new Intl.NumberFormat("es-HN", { style: "currency", currency: "HNL" });
