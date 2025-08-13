@@ -11,7 +11,7 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", image: "assets/laptop7300.jpg", price: 16999, stock: 3, features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
+  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", image: "assets/latitude7300.jpg", price: 16999, stock: 3, features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
   { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
   { id: "p3", name: "Router Wi‑Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU‑MIMO"] },
   { id: "p4", name: "Headset USB con micrófono", category: "accesorios", price: 999, stock: 15, features: ["Cancelación de ruido","Ligero","Ajustable"] },
