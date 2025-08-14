@@ -28,8 +28,8 @@ const PRODUCTS = [
   { id: "p12", name: "Samsung Galaxy A54 5G 8/256",category: "celulares",  price: 10500, stock: 6,  features: ["6.4″ Super AMOLED","50MP OIS","IP67"] },
   { id: "p13", name: "Teclado mecánico RGB",       category: "accesorios", price: 1490,  stock: 12, features: ["Switches azules","Anti-ghosting","Iluminación RGB"] },
   { id: "p14", name: "Monitor 24″ FHD 75Hz",       category: "accesorios", price: 3990,  stock: 7,  features: ["Panel IPS 24″","75 Hz","HDMI/DP"] },
-  { id: "p15", name: "Switch Gigabit 8 puertos",   category: "redes",      price: 2390,  stock: 9,  features: ["8× RJ45 10/100/1000","Chasis metálico","Fanless"] }
-  { id: "p16", name: "Cámaras IP Wi-Fi",   category: "camaras",      price: 1500,  stock: 9,  features: ["Camara Tapo","Calidad 1080p","PTZ"] }
+  { id: "p15", name: "Switch Gigabit 8 puertos",   category: "redes",      price: 2390,  stock: 9,  features: ["8× RJ45 10/100/1000","Chasis metálico","Fanless"] },
+  { id: "p16", name: "Cámaras IP Wi-Fi",   category: "camaras",      price: 1500,  stock: 9,  features: ["Camara Tapo","Calidad 1080p","PTZ"] },
   { id: "p17", name: "Cámaras de vigilancia",   category: "camaras",      price: 2390,  stock: 9,  features: ["NVR + 1TB","Set 4 Cámaras Inalambricas"] }
 ];
 
