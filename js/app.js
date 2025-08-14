@@ -11,8 +11,8 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, image: "assets/Latitude7300.jpg", features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
-  { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, image: "assets/Latitude7300.png", features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
+  { id: "p1", name: "Laptop Dell Latitude 7300", category: "laptops", price: 16999, stock: 3, image: "assets/latitude7300.png", features: ["Core i7 8th Gen","RAM 16GB","SSD 512GB","Teclado retroiluminado","Windows 11"] },
+  { id: "p2", name: "Samsung Galaxy S22 Ultra 12/256GB", category: "celulares", price: 18499, stock: 2, image: "assets/latitude3310.png", features: ["Pantalla 6.8","108MP","Batería 5000mAh","Android"] },
   { id: "p3", name: "Router Wi-Fi 6 AX3000", category: "redes", price: 4599, stock: 8, features: ["Doble banda","OFDMA","MU-MIMO"] },
   { id: "p4", name: "Headset USB con micrófono", category: "accesorios", price: 999, stock: 15, features: ["Cancelación de ruido","Ligero","Ajustable"] },
   { id: "p5", name: "Licencia Office 365 Personal (1 año)", category: "software", price: 2299, stock: 20, features: ["Word, Excel, PowerPoint","1TB OneDrive"] },
@@ -22,7 +22,7 @@ const PRODUCTS = [
 
   // Nuevos (p9 - p15)
   { id: "p9",  name: "Dell Latitude 3310 2-in-1", category: "laptops",    price: 12990, stock: 2,  features: ["Core i5 8th Gen","RAM 8GB","SSD 256GB","Pantalla táctil 13.3″"] },
-  { id: "p10", name: "HP Pavilion 15",             category: "laptops",    price: 17500, stock: 4, image: "assets/Latitude5400.png",  features: ["Ryzen 5 5500U","RAM 16GB","SSD 512GB","15.6″ FHD"] },
+  { id: "p10", name: "HP Pavilion 15",             category: "laptops",    price: 17500, stock: 4, image: "assets/latitude5400.png",  features: ["Ryzen 5 5500U","RAM 16GB","SSD 512GB","15.6″ FHD"] },
   { id: "p11", name: "Xiaomi Redmi Note 12 4/128", category: "celulares",  price: 5990,  stock: 10, features: ["6.67″ AMOLED","Cámara 50MP","Batería 5000 mAh"] },
   { id: "p12", name: "Samsung Galaxy A54 5G 8/256",category: "celulares",  price: 10500, stock: 6,  features: ["6.4″ Super AMOLED","50MP OIS","IP67"] },
   { id: "p13", name: "Teclado mecánico RGB",       category: "accesorios", price: 1490,  stock: 12, features: ["Switches azules","Anti-ghosting","Iluminación RGB"] },
