@@ -8,7 +8,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
+  
+/* ===== Fix tema claro: contraste en tarjetas, textos y precios ===== */
+
+/* Botones oscuros con texto blanco (light) */
+.light .btn,
+.light .btn.primary,
+.light .whats,
+.light .mail,
+.light .info,
+.light .add { color:#fff; }
+
+/* Chips activos */
+.light .chip.active { color:#fff; }
+
+/* Tarjeta y contenido: que realmente sea claro */
+.light .card { background:#ffffff !important; border-color:#e5e7eb !important; }
+.light .media { background:#e2e8f0; }
+.light .body, .light .name, .light .price { color:#0f172a !important; }
+.light .desc { color:#475569 !important; }      /* descripción más legible */
+.light .old { color:#64748b !important; }       /* precio tachado */
+.light .pct { background:#f1f5f9; border-color:#e2e8f0; color:#0f172a; }
+.light .pill { color:#475569; border-color:#cbd5e1; }
+
+/* Badges y estados sobre la imagen */
+.light .badge{ background:rgba(255,255,255,.9); color:#0f172a; border-color:#e5e7eb; }
+.light .status.ok{ background:#e7f5ec; color:#14532d; border-color:#bbf7d0; }
+.light .status.ko{ background:#f3e8ff; color:#6b21a8; border-color:#e9d5ff; }
+.light .low{ background:#fee2e2; color:#991b1b; border-color:#fecaca; }
+
+/* Etiquetas “Nuevo/Oferta” */
+.light .tag.new{ background:#dcfce7; color:#166534; border-color:#bbf7d0; }
+.light .tag.deal{ background:#fee2e2; color:#991b1b; border-color:#fecaca; }
+
+/* Paginación e inputs */
+.light .pagebtn, .light .pnum{ background:#fff; border-color:#e5e7eb; color:#0f172a; }
+.light .pnum.active{ background:var(--primary); color:#fff; }
+.light .input{ background:#fff; border-color:#e5e7eb; color:#0f172a; }
+
+<style>
     :root { --bg:#0f1115; --panel:#141823; --muted:#9aa4b2; --text:#e8ecf1; --primary:#e11d48; --accent:#22d3ee; --ring:rgba(225,29,72,.35); }
     .light { --bg:#f6f7fb; --panel:#ffffff; --muted:#6b7280; --text:#0f172a; --primary:#e11d48; --accent:#0891b2; --ring:rgba(225,29,72,.25); }
     *{ box-sizing:border-box }
