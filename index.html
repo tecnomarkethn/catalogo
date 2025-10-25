@@ -100,7 +100,18 @@
     .qty{ display:inline-flex; align-items:center; gap:8px }
     .qty button{ width:28px; height:28px; border-radius:8px; border:1px solid #233047; background:#0b1220; color:#fff; cursor:pointer }
     .cartfooter{ display:flex; justify-content:space-between; align-items:center; margin-top:12px }
-  </style>
+  
+    /* --- Fix: tema claro (light) botones con texto blanco sobre fondos oscuros --- */
+    .light .btn,
+    .light .btn.primary,
+    .light .whats,
+    .light .mail,
+    .light .info,
+    .light .add { color:#fff; }
+    /* Mejora contraste de chips activos en tema claro */
+    .light .chip.active { color:#fff; }
+
+</style>
 </head>
 <body>
   <div class="container">
