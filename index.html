@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>TecnoMarketHN · Catálogo</title>
   <meta name="description" content="Catálogo TecnoMarketHN con ofertas, stock, carrusel, visitas, carrito persistente y checkout a WhatsApp." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,6 +130,54 @@
 .light .pagebtn, .light .pnum{ background:#fff; border-color:#e5e7eb; color:#0f172a; }
 .light .pnum.active{ background:var(--primary); color:#fff; }
 .light .input{ background:#fff; border-color:#e5e7eb; color:#0f172a; }
+
+
+/* ===== Responsive Enhancements (Desktop + Mobile) ===== */
+:root { --tap: 44px; }
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Fluid type for better readability on any screen */
+html { font-size: clamp(14px, 1.2vw, 16px); }
+
+/* Make inputs and buttons finger-friendly on mobile */
+.input, .btn, select { min-height: var(--tap); }
+
+/* Toolbar reflow on narrow screens */
+@media (max-width: 720px){
+  .toolbar{ grid-template-columns: 1fr; }
+  .actions{ gap:8px; }
+  .searchbar{ min-width: 100% }
+}
+
+/* Compact footer on mobile */
+@media (max-width: 600px){
+  footer .footer-grid{ grid-template-columns: 1fr; gap:10px }
+  .qr{ width:72px; height:72px }
+}
+
+/* Card tweaks for very small screens */
+@media (max-width: 380px){
+  .price{ font-size: 16px }
+  .old{ font-size: 12px }
+  .desc{ font-size: 13px }
+}
+
+/* Improve keyboard focus visibility */
+:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Ensure light theme contrast for buttons on dark backgrounds */
+.light .btn,
+.light .btn.primary,
+.light .whats,
+.light .mail,
+.light .info,
+.light .add { color:#fff; }
+.light .chip.active { color:#fff; }
+
+/* Smooth container padding on small screens */
+@media (max-width: 480px){
+  .container{ padding:16px }
+}
 
 </style>
 </head>
