@@ -8,7 +8,114 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  
+  <style>
+    :root { --bg:#0f1115; --panel:#141823; --muted:#9aa4b2; --text:#e8ecf1; --primary:#e11d48; --accent:#22d3ee; --ring:rgba(225,29,72,.35); }
+    .light { --bg:#f6f7fb; --panel:#ffffff; --muted:#6b7280; --text:#0f172a; --primary:#e11d48; --accent:#0891b2; --ring:rgba(225,29,72,.25); }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{ margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans"; background:radial-gradient(1200px 800px at 20% -10%, rgba(34,211,238,.08), transparent), radial-gradient(1200px 800px at 120% 10%, rgba(225,29,72,.08), transparent), var(--bg); color:var(--text); transition:background .3s ease,color .3s ease }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:1200px; margin:0 auto; padding:24px }
+    header{ display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+    .brand{ display:flex; align-items:center; gap:12px }
+    .logo{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center; font-weight:800; letter-spacing:.5px; background:linear-gradient(135deg, var(--primary), #f97316); box-shadow:0 10px 25px var(--ring) }
+    .title small{ display:block; color:var(--muted); font-weight:600; margin-top:2px }
+
+    .promo{ margin:12px 0 0; border:1px solid #2a3346; background:linear-gradient(90deg, rgba(225,29,72,.15), rgba(34,211,238,.10)); border-radius:14px; padding:12px; display:flex; align-items:center; justify-content:space-between; gap:10px }
+    .actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px }
+    .chip{ padding:8px 12px; border-radius:999px; background:#1b2231; color:var(--muted); border:1px solid #232a3a; font-weight:600; cursor:pointer }
+    .light .chip{ background:#f1f5f9; border-color:#e5e7eb }
+    .chip.active{ background:#1f2937; color:var(--text); border-color:#2b3447 }
+
+    .searchbar{ display:flex; gap:10px; flex:1; min-width:280px }
+    .input{ flex:1; background:#111827; border:1px solid #1f2937; color:var(--text); padding:12px 14px; border-radius:12px; outline:none }
+    .input:focus{ border-color:#334155; box-shadow:0 0 0 6px rgba(34,211,238,.08) }
+    .light .input{ background:#fff; border-color:#e5e7eb }
+
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 14px; border-radius:12px; font-weight:700; cursor:pointer; border:1px solid #293245; background:#111827; color:var(--text) }
+    .btn.primary{ background:linear-gradient(180deg, var(--primary), #be123c); border:1px solid #7f102b; box-shadow:0 8px 24px var(--ring) }
+
+    .toolbar{ display:grid; grid-template-columns: 1fr auto; gap:12px; margin:18px 0 }
+
+    .grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:16px }
+    @media (max-width:1024px){ .grid{ grid-template-columns: repeat(3,1fr) } }
+    @media (max-width:720px){ .grid{ grid-template-columns: repeat(2,1fr) } }
+    @media (max-width:500px){ .grid{ grid-template-columns:1fr } }
+
+    .card{ background:var(--panel); border:1px solid #1f2433; border-radius:16px; overflow:hidden; display:flex; flex-direction:column }
+    .light .card{ border-color:#e5e7eb }
+
+    /* Media + Carrusel */
+    .media{ aspect-ratio:4/3; background:#0b0e15; position:relative; overflow:hidden }
+    .media img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.12) contrast(1.05) }
+    .badge{ position:absolute; top:10px; left:10px; background:rgba(17,24,39,.75); backdrop-filter:blur(6px); border:1px solid #2a3346; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px }
+    .light .badge{ background:rgba(255,255,255,.85); color:#0f172a; border-color:#e5e7eb }
+    .status{ position:absolute; top:10px; right:10px; border-radius:999px; padding:6px 10px; font-weight:800; font-size:12px }
+    .ok{ background:#14532d; color:#bbf7d0; border:1px solid #064e3b }
+    .ko{ background:#3f3355; color:#e9d5ff; border:1px solid #4c1d95 }
+    .low{ position:absolute; left:10px; top:44px; background:#7f1d1d; color:#fecaca; border:1px solid #991b1b; border-radius:999px; font-size:12px; font-weight:800; padding:4px 8px }
+
+    .tags{ position:absolute; bottom:10px; left:10px; display:flex; gap:6px; flex-wrap:wrap }
+    .tag{ font-size:11px; font-weight:800; padding:4px 8px; border-radius:999px; border:1px solid transparent }
+    .tag.new{ background:#064e3b; color:#bbf7d0; border-color:#065f46 }
+    .tag.deal{ background:#7f1d1d; color:#fecaca; border-color:#991b1b }
+
+    /* Carrusel */
+    .navbtn{ position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:999px; border:1px solid #233047; background:rgba(17,24,39,.65); color:#fff; display:grid; place-items:center; cursor:pointer }
+    .navbtn.prev{ left:8px }
+    .navbtn.next{ right:8px }
+    .dots{ position:absolute; bottom:8px; right:8px; display:flex; gap:6px }
+    .dot{ width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.4); border:1px solid #223 }
+    .dot.active{ background:#fff }
+
+    .body{ padding:14px; display:grid; gap:10px }
+    .name{ font-weight:800; letter-spacing:.2px }
+    .desc{ color:var(--muted); font-size:14px; min-height:38px }
+    .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap }
+    .price{ font-weight:800; font-size:18px; display:flex; align-items:center; gap:10px }
+    .old{ text-decoration: line-through; opacity:.6; font-weight:600; font-size:14px }
+    .pct{ font-size:12px; font-weight:800; padding:2px 8px; border-radius:999px; background:#0b1220; border:1px solid #293245 }
+    .pill{ font-size:12px; color:var(--muted); border:1px dashed #2c364a; padding:6px 10px; border-radius:999px }
+
+    .cta{ display:grid; grid-template-columns: 1fr 40px 40px 40px; gap:10px }
+    .whats, .mail, .info, .add{ display:inline-flex; align-items:center; justify-content:center; height:40px; border-radius:12px; cursor:pointer }
+    .whats{ background:#16a34a; border:1px solid #0f6b2f; box-shadow:0 8px 18px rgba(22,163,74,.35) }
+    .mail{ background:#1d4ed8; border:1px solid #1e3a8a }
+    .info{ background:#0f172a; border:1px solid #111827 }
+    .add{ background:#0b1220; border:1px solid #233047 }
+
+    footer{ margin-top:24px; padding:24px; border-top:1px solid #232a3a; color:var(--muted) }
+    .footer-grid{ display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:center }
+    .qr{ width:90px; height:90px; background:#fff; border-radius:10px; display:block; overflow:hidden }
+
+    .pager{ display:flex; align-items:center; gap:10px; justify-content:center; margin:18px 0 0; flex-wrap:wrap }
+    .pagebtn{ padding:8px 12px; border-radius:10px; border:1px solid #293245; background:#111827; color:var(--text); cursor:pointer }
+    .light .pagebtn{ background:#fff; border-color:#e5e7eb }
+    .pagebtn[disabled]{ opacity:.5; cursor:not-allowed }
+    .pnums{ display:flex; gap:6px; align-items:center; flex-wrap:wrap }
+    .pnum{ padding:8px 12px; border-radius:10px; border:1px solid #293245; background:#0b1220; color:var(--text); cursor:pointer }
+    .light .pnum{ background:#fff; border-color:#e5e7eb; color:#0f172a }
+    .pnum.active{ background:var(--primary); border-color:#7f102b }
+
+    /* Header Right: carrito */
+    .cartbtn{ position:relative }
+    .badgecount{ position:absolute; top:-6px; right:-6px; background:var(--primary); color:#fff; font-size:12px; font-weight:800; padding:2px 6px; border-radius:999px; border:1px solid #7f102b }
+
+    /* Modal genérico */
+    .modal{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; padding:16px }
+    .modal.open{ display:flex }
+    .sheet{ width:100%; max-width:680px; background:var(--panel); border:1px solid #1f2433; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.35) }
+    .light .sheet{ border-color:#e5e7eb }
+    .sheet h3{ margin:4px 0 12px 0 }
+    .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+
+    /* Carrito */
+    .cartlist{ display:grid; gap:10px; max-height:50vh; overflow:auto; padding-right:4px }
+    .cartitem{ display:grid; grid-template-columns: 1fr auto auto; gap:10px; align-items:center; padding:10px; border:1px solid #233047; border-radius:12px }
+    .qty{ display:inline-flex; align-items:center; gap:8px }
+    .qty button{ width:28px; height:28px; border-radius:8px; border:1px solid #233047; background:#0b1220; color:#fff; cursor:pointer }
+    .cartfooter{ display:flex; justify-content:space-between; align-items:center; margin-top:12px }
+
 /* ===== Fix tema claro: contraste en tarjetas, textos y precios ===== */
 
 /* Botones oscuros con texto blanco (light) */
@@ -46,119 +153,7 @@
 .light .pnum.active{ background:var(--primary); color:#fff; }
 .light .input{ background:#fff; border-color:#e5e7eb; color:#0f172a; }
 
-<style>
-    :root { --bg:#0f1115; --panel:#141823; --muted:#9aa4b2; --text:#e8ecf1; --primary:#e11d48; --accent:#22d3ee; --ring:rgba(225,29,72,.35); }
-    .light { --bg:#f6f7fb; --panel:#ffffff; --muted:#6b7280; --text:#0f172a; --primary:#e11d48; --accent:#0891b2; --ring:rgba(225,29,72,.25); }
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{ margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans"; background:radial-gradient(1200px 800px at 20% -10%, rgba(34,211,238,.08), transparent), radial-gradient(1200px 800px at 120% 10%, rgba(225,29,72,.08), transparent), var(--bg); color:var(--text); transition:background .3s ease,color .3s ease }
-    a{ color:inherit; text-decoration:none }
-    .container{ max-width:1200px; margin:0 auto; padding:24px }
-    header{ display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap }
-    .brand{ display:flex; align-items:center; gap:12px }
-    .logo{ width:44px; height:44px; border-radius:12px; display:grid; place-items:center; font-weight:800; letter-spacing:.5px; background:linear-gradient(135deg, var(--primary), #f97316); box-shadow:0 10px 25px var(--ring) }
-    .title small{ display:block; color:var(--muted); font-weight:600; margin-top:2px }
-
-    .promo{ margin:12px 0 0; border:1px solid #2a3346; background:linear-gradient(90deg, rgba(225,29,72,.15), rgba(34,211,238,.10)); border-radius:14px; padding:12px; display:flex; align-items:center; justify-content:space-between; gap:10px }
-    .actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:10px }
-    .chip{ padding:8px 12px; border-radius:999px; background:#1b2231; color:#9aa4b2; border:1px solid #232a3a; font-weight:600; cursor:pointer }
-    .light .chip{ background:#f1f5f9; border-color:#e5e7eb }
-    .chip.active{ background:#1f2937; color:#e8ecf1; border-color:#2b3447 }
-
-    .searchbar{ display:flex; gap:10px; flex:1; min-width:280px }
-    .input{ flex:1; background:#111827; border:1px solid #1f2937; color:#e8ecf1; padding:12px 14px; border-radius:12px; outline:none }
-    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 14px; border-radius:12px; font-weight:700; cursor:pointer; border:1px solid #293245; background:#111827; color:#e8ecf1 }
-    .btn.primary{ background:linear-gradient(180deg, var(--primary), #be123c); border:1px solid #7f102b; box-shadow:0 8px 24px var(--ring) }
-    .toolbar{ display:grid; grid-template-columns: 1fr auto; gap:12px; margin:18px 0 }
-
-    .grid{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:16px }
-    @media (max-width:1024px){ .grid{ grid-template-columns: repeat(3,1fr) } }
-    @media (max-width:720px){ .grid{ grid-template-columns: repeat(2,1fr) } }
-    @media (max-width:500px){ .grid{ grid-template-columns:1fr } }
-
-    .card{ background:#141823; border:1px solid #1f2433; border-radius:16px; overflow:hidden; display:flex; flex-direction:column }
-    .media{ aspect-ratio:4/3; background:#0b0e15; position:relative; overflow:hidden }
-    .media img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.12) contrast(1.05) }
-    .badge{ position:absolute; top:10px; left:10px; background:rgba(17,24,39,.75); border:1px solid #2a3346; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px }
-    .status{ position:absolute; top:10px; right:10px; border-radius:999px; padding:6px 10px; font-weight:800; font-size:12px }
-    .ok{ background:#14532d; color:#bbf7d0; border:1px solid #064e3b }
-    .ko{ background:#3f3355; color:#e9d5ff; border:1px solid #4c1d95 }
-    .low{ position:absolute; left:10px; top:44px; background:#7f1d1d; color:#fecaca; border:1px solid #991b1b; border-radius:999px; font-size:12px; font-weight:800; padding:4px 8px }
-
-    .tags{ position:absolute; bottom:10px; left:10px; display:flex; gap:6px; flex-wrap:wrap }
-    .tag{ font-size:11px; font-weight:800; padding:4px 8px; border-radius:999px; border:1px solid transparent }
-    .tag.new{ background:#064e3b; color:#bbf7d0; border-color:#065f46 }
-    .tag.deal{ background:#7f1d1d; color:#fecaca; border-color:#991b1b }
-
-    .navbtn{ position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:999px; border:1px solid #233047; background:rgba(17,24,39,.65); color:#fff; display:grid; place-items:center; cursor:pointer }
-    .navbtn.prev{ left:8px }
-    .navbtn.next{ right:8px }
-    .dots{ position:absolute; bottom:8px; right:8px; display:flex; gap:6px }
-    .dot{ width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.4); border:1px solid #223 }
-    .dot.active{ background:#fff }
-
-    .body{ padding:14px; display:grid; gap:10px }
-    .name{ font-weight:800; letter-spacing:.2px }
-    .desc{ color:#9aa4b2; font-size:14px; min-height:38px }
-    .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap }
-    .price{ font-weight:800; font-size:18px; display:flex; align-items:center; gap:10px }
-    .old{ text-decoration: line-through; opacity:.6; font-weight:600; font-size:14px }
-    .pct{ font-size:12px; font-weight:800; padding:2px 8px; border-radius:999px; background:#0b1220; border:1px solid #293245 }
-    .pill{ font-size:12px; color:#9aa4b2; border:1px dashed #2c364a; padding:6px 10px; border-radius:999px }
-
-    .cta{ display:grid; grid-template-columns: 1fr 40px 40px 40px; gap:10px }
-    .whats, .mail, .info, .add{ display:inline-flex; align-items:center; justify-content:center; height:40px; border-radius:12px; cursor:pointer }
-    .whats{ background:#16a34a; border:1px solid #0f6b2f; }
-    .mail{ background:#1d4ed8; border:1px solid #1e3a8a }
-    .info{ background:#0f172a; border:1px solid #111827 }
-    .add{ background:#0b1220; border:1px solid #233047 }
-
-    footer{ margin-top:24px; padding:24px; border-top:1px solid #232a3a; color:#9aa4b2 }
-    .footer-grid{ display:grid; grid-template-columns: 1fr auto; gap:12px; align-items:center }
-    .qr{ width:90px; height:90px; background:#fff; border-radius:10px; display:block; overflow:hidden }
-
-    .pager{ display:flex; align-items:center; gap:10px; justify-content:center; margin:18px 0 0; flex-wrap:wrap }
-    .pagebtn{ padding:8px 12px; border-radius:10px; border:1px solid #293245; background:#111827; color:#e8ecf1; cursor:pointer }
-    .pagebtn[disabled]{ opacity:.5; cursor:not-allowed }
-    .pnums{ display:flex; gap:6px; align-items:center; flex-wrap:wrap }
-    .pnum{ padding:8px 12px; border-radius:10px; border:1px solid #293245; background:#0b1220; color:#e8ecf1; cursor:pointer }
-    .pnum.active{ background:#e11d48; border-color:#7f102b }
-
-    .cartbtn{ position:relative }
-    .badgecount{ position:absolute; top:-6px; right:-6px; background:var(--primary); color:#fff; font-size:12px; font-weight:800; padding:2px 6px; border-radius:999px; border:1px solid #7f102b }
-
-    .modal{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; padding:16px }
-    .modal.open{ display:flex }
-    .sheet{ width:100%; max-width:680px; background:#141823; border:1px solid #1f2433; border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.35) }
-    .sheet h3{ margin:4px 0 12px 0 }
-    .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
-
-    .cartlist{ display:grid; gap:10px; max-height:50vh; overflow:auto; padding-right:4px }
-    .cartitem{ display:grid; grid-template-columns: 1fr auto auto; gap:10px; align-items:center; padding:10px; border:1px solid #233047; border-radius:12px }
-    .qty{ display:inline-flex; align-items:center; gap:8px }
-    .qty button{ width:28px; height:28px; border-radius:8px; border:1px solid #233047; background:#0b1220; color:#fff; cursor:pointer }
-    .cartfooter{ display:flex; justify-content:space-between; align-items:center; margin-top:12px }
-  
-    /* --- Fix: tema claro (light) botones con texto blanco sobre fondos oscuros --- */
-    .light .btn,
-    .light .btn.primary,
-    .light .whats,
-    .light .mail,
-    .light .info,
-    .light .add { color:#fff; }
-    /* Mejora contraste de chips activos en tema claro */
-    .light .chip.active { color:#fff; }
-
-
-    /* --- Fix 2: tema claro — visibilidad de textos y precios en tarjetas --- */
-    .light .card { background:#ffffff; border-color:#e5e7eb; }
-    .light .body, .light .name, .light .desc, .light .price { color:#0f172a; }
-    .light .old { color:#64748b; } /* precio tachado más legible */
-    .light .pct { background:#eef2ff; border-color:#cbd5e1; color:#0f172a; }
-    .light .pill { color:#475569; border-color:#cbd5e1; }
-    .light .pagebtn, .light .pnum { color:#0f172a; }
-
-</style>
+  </style>
 </head>
 <body>
   <div class="container">
@@ -221,10 +216,10 @@
 
     <div class="adminbar">
       <button id="adminToggle" class="btn" title="Administrar (local)">⚙️ Admin</button>
-      <span style="color:#9aa4b2">Protegido por contraseña (solo cliente). Activación de productos persiste en <strong>este navegador</strong>.</span>
+      <span style="color:var(--muted)">Protegido por contraseña (solo cliente). Activación de productos persiste en <strong>este navegador</strong>.</span>
     </div>
     <div id="drawer" class="drawer" aria-hidden="true">
-      <table class="table" style="width:100%; border-collapse:collapse">
+      <table class="table">
         <thead><tr><th>Activo</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Etiquetas</th><th>Stock</th><th>Visitas</th></tr></thead>
         <tbody id="admintable"></tbody>
       </table>
@@ -253,6 +248,7 @@
     </footer>
   </div>
 
+  <!-- Modal correo -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
     <div class="sheet">
       <div style="display:flex; align-items:center; justify-content:space-between"><h3 id="mTitle">Contactar por correo</h3><button id="closeModal" class="chip">✖</button></div>
@@ -264,6 +260,7 @@
     </div>
   </div>
 
+  <!-- Modal carrito -->
   <div id="cartModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cTitle">
     <div class="sheet">
       <div style="display:flex; align-items:center; justify-content:space-between"><h3 id="cTitle">Tu carrito</h3><button id="closeCart" class="chip">✖</button></div>
@@ -282,9 +279,11 @@
   </div>
 
   <script>
+    // ——— Configuración ———
     const ADMIN_PASSWORD = 'Tecno2025!';
     const FX_HNL_PER_USD = 24.70;
 
+    // ——— Datos del catálogo (edita aquí) ———
     const PRODUCTS_BASE = [
       { id:'p1', nombre:'Lenovo LOQ 15IRH8', categoria:'Laptops', precio:28500, precio_oferta:26990, stock:3, descripcion:'Intel Core i5-12450H · RTX 6GB · 8GB DDR5 · 512GB SSD · 15.6” FHD', imagen:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop', imagenes:[
         'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop',
@@ -315,26 +314,30 @@
       ], disponible:true, etiquetas:[] },
     ];
 
+    // ——— Persistencia local ———
     const KEY_ACTIVE = 'tmhn_activos_v1';
     const KEY_VISITS = 'tmhn_visitas_v1';
     const KEY_CART   = 'tmhn_cart_v1';
 
     const activos = JSON.parse(localStorage.getItem(KEY_ACTIVE) || '{}');
     const visitas = JSON.parse(localStorage.getItem(KEY_VISITS) || '{}');
-    const cart    = JSON.parse(localStorage.getItem(KEY_CART)   || '{}');
+    const cart    = JSON.parse(localStorage.getItem(KEY_CART)   || '{}'); // {productId: qty}
 
     function getProducts(){ return PRODUCTS_BASE.map(p => ({ ...p, activo: activos[p.id] !== undefined ? activos[p.id] : true, visitas: visitas[p.id]||0 })); }
     function setActivo(id, val){ activos[id] = val; localStorage.setItem(KEY_ACTIVE, JSON.stringify(activos)); apply(); renderAdmin(); }
 
+    // Carrito
     function saveCart(){ localStorage.setItem(KEY_CART, JSON.stringify(cart)); updateCartCount(); renderCart(); }
     function addToCart(id, qty=1){ cart[id] = (cart[id]||0) + qty; if(cart[id] < 1) delete cart[id]; saveCart(); }
     function setQty(id, qty){ if(qty<=0) delete cart[id]; else cart[id]=qty; saveCart(); }
     function clearCart(){ for(const k of Object.keys(cart)) delete cart[k]; saveCart(); }
     function cartItems(){ return Object.entries(cart).map(([id,qty])=>({ p: getProducts().find(x=>x.id===id), qty })).filter(x=>x.p); }
 
+    // Visitas (una vez por sesión y producto)
     const seenThisSession = new Set();
     function incVisit(id){ visitas[id] = (visitas[id]||0) + 1; localStorage.setItem(KEY_VISITS, JSON.stringify(visitas)); }
 
+    // ——— Utilidades ———
     const fmtHNL = new Intl.NumberFormat('es-HN', { style:'currency', currency:'HNL', maximumFractionDigits:0 });
     const fmtUSD = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:2 });
     const el = (s) => document.querySelector(s);
@@ -342,15 +345,18 @@
     const pnums = el('#pnums');
     const state = { q:'', cat:'todos', tag:null, sort:'recientes', page:1, pageSize:8, currency:'HNL' };
 
+    // Tema
     const THEME_KEY = 'tmhn_theme';
     const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
     if(savedTheme === 'light'){ document.body.classList.add('light'); }
     function toggleTheme(){ document.body.classList.toggle('light'); localStorage.setItem(THEME_KEY, document.body.classList.contains('light') ? 'light' : 'dark'); }
     el('#themeBtn').addEventListener('click', toggleTheme);
 
+    // Multi‑moneda
     function priceInCurrency(priceHNL){ return state.currency === 'USD' ? fmtUSD.format(priceHNL / FX_HNL_PER_USD) : fmtHNL.format(priceHNL); }
     el('#currency').addEventListener('change', (e)=>{ state.currency = e.target.value; el('#currencyLabel').textContent = state.currency === 'USD' ? 'Dólares (USD)' : 'Lempiras (HNL)'; apply(); renderCartTotals(); });
 
+    // Banner promo
     const promo = el('#promo'); el('#promoClose').addEventListener('click', ()=> promo.style.display='none');
 
     function productMatches(p){
@@ -369,7 +375,9 @@
     function render(list){
       grid.innerHTML = '';
       if(!list.length){ grid.innerHTML = `<div class="card" style="padding:24px; grid-column:1/-1; text-align:center">No hay resultados. Ajusta la búsqueda, categoría o etiqueta.</div>`; return; }
-      const observer = new IntersectionObserver((entries)=>{ entries.forEach(en=>{ if(en.isIntersecting){ const id = en.target.getAttribute('data-id'); if(id && !seenThisSession.has(id)){ seenThisSession.add(id); incVisit(id); const v = en.target.querySelector('.vis'); if(v){ v.textContent = `👁 ${visitas[id]}`; } } } }); }, { threshold: 0.6 });
+      const observer = new IntersectionObserver((entries)=>{ entries.forEach(en=>{ if(en.isIntersecting){ const id = en.target.getAttribute('data-id'); if(id && !seenThisSession.has(id)){ seenThisSession.add(id); incVisit(id); // actualizar contador in-place
+            const v = en.target.querySelector('.vis'); if(v){ v.textContent = `👁 ${visitas[id]}`; }
+          } } }); }, { threshold: 0.6 });
 
       for(const p of list){
         const card = document.createElement('article');
@@ -414,7 +422,9 @@
             </div>
           </div>`;
         grid.appendChild(card);
+        // Carrusel
         if(imgs.length>1){ renderCarousel(card.querySelector('.media'), imgs); }
+        // Observador de visitas
         observer.observe(card);
       }
       grid.querySelectorAll('.mail').forEach(btn => btn.addEventListener('click', () => openMail(btn.dataset.id)));
@@ -425,6 +435,7 @@
 
     function apply(){ let list = getProducts().filter(productMatches).sort(compare); const pageItems = paginate(list); render(pageItems); }
 
+    // ——— UI Events ———
     document.querySelectorAll('.chip').forEach(btn => { btn.addEventListener('click', () => { if(btn.dataset.cat){ document.querySelectorAll('.chip[data-cat]').forEach(b => b.classList.remove('active')); btn.classList.add('active'); state.cat = btn.dataset.cat; state.page = 1; apply(); } if(btn.dataset.tag){ const same = state.tag === btn.dataset.tag; state.tag = same ? null : btn.dataset.tag; state.page = 1; apply(); document.querySelectorAll('.chip[data-tag]').forEach(b => b.classList.remove('active')); if(state.tag) btn.classList.add('active'); } }); });
     el('#q').addEventListener('input', (e)=>{ state.q = e.target.value.trim().toLowerCase(); state.page = 1; apply(); });
     el('#sort').addEventListener('change', (e)=>{ state.sort = e.target.value; apply(); });
@@ -432,22 +443,30 @@
     el('#prev').addEventListener('click', ()=>{ state.page = Math.max(1, state.page-1); apply(); });
     el('#next').addEventListener('click', ()=>{ state.page = state.page+1; apply(); });
 
+    // Share
     el('#shareBtn').addEventListener('click', async () => { const data = { title:'TecnoMarketHN · Catálogo', text:'Dale un vistazo a mis productos', url: location.href }; try{ if(navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(data.url); alert('Enlace copiado ✅'); } }catch{} });
 
+    // QR real del catálogo
     function setQR(url){ el('#qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}`; }
     setQR(location.href);
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Admin con contraseña
     const drawer = el('#drawer');
     function ensureAdmin(){ if(sessionStorage.getItem('tmhn_admin_ok')==='1') return true; const pass = prompt('Contraseña de administrador'); if(pass === ADMIN_PASSWORD){ sessionStorage.setItem('tmhn_admin_ok','1'); return true; } alert('Contraseña incorrecta'); return false; }
     el('#adminToggle').addEventListener('click', ()=>{ if(!ensureAdmin()) return; drawer.style.display = drawer.style.display==='block' ? 'none' : 'block'; drawer.setAttribute('aria-hidden', drawer.style.display!=='block'); renderAdmin(); });
 
     function renderAdmin(){ const tbody = el('#admintable'); if(!tbody) return; tbody.innerHTML = ''; for(const p of getProducts()){ const tr = document.createElement('tr'); tr.innerHTML = `<td><div class="switch ${p.activo?'on':''}" data-id="${p.id}"></div></td><td>${p.nombre}</td><td>${p.categoria}</td><td>${priceInCurrency(p.precio)}</td><td>${(p.etiquetas||[]).join(', ')||'—'}</td><td>${p.stock??'—'}</td><td>${visitas[p.id]||0}</td>`; tbody.appendChild(tr); } tbody.querySelectorAll('.switch').forEach(sw => { sw.addEventListener('click', ()=>{ const id=sw.dataset.id; const next=!sw.classList.contains('on'); setActivo(id,next); sw.classList.toggle('on', next); }); }); }
 
+    // Modal correo
     const modal = el('#modal');
     el('#closeModal').addEventListener('click', ()=> modal.classList.remove('open'));
-    function openMail(id){ const p = getProducts().find(x=>x.id===id); if(!p) return; modal.classList.add('open'); const base = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; el('#fmsg').value = `Hola TecnoMarketHN, me interesa el producto: ${p.nombre} (${p.categoria}) — ${priceInCurrency(base)}.`; el('#mailForm').onsubmit = (ev)=>{ ev.preventDefault(); const name = el('#fname').value.trim(); const email = el('#femail').value.trim(); const msg = el('#fmsg').value.trim(); const subject = encodeURIComponent(`Consulta: ${p.nombre}`); const body = encodeURIComponent(`${msg}\n\nNombre: ${name}\nCorreo: ${email}`); window.location.href = `mailto:kenamorado2009@outlook.com?subject=${subject}&body=${body}`; modal.classList.remove('open'); }; el('#copyMail').onclick = async ()=>{ await navigator.clipboard.writeText('kenamorado2009@outlook.com'); alert('Correo copiado ✅'); }; }
+    function openMail(id){ const p = getProducts().find(x=>x.id===id); if(!p) return; modal.classList.add('open'); const base = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; el('#fmsg').value = `Hola TecnoMarketHN, me interesa el producto: ${p.nombre} (${p.categoria}) — ${priceInCurrency(base)}.`; el('#mailForm').onsubmit = (ev)=>{ ev.preventDefault(); const name = el('#fname').value.trim(); const email = el('#femail').value.trim(); const msg = el('#fmsg').value.trim(); const subject = encodeURIComponent(`Consulta: ${p.nombre}`); const body = encodeURIComponent(`${msg}
 
+Nombre: ${name}
+Correo: ${email}`); window.location.href = `mailto:kenamorado2009@outlook.com?subject=${subject}&body=${body}`; modal.classList.remove('open'); }; el('#copyMail').onclick = async ()=>{ await navigator.clipboard.writeText('kenamorado2009@outlook.com'); alert('Correo copiado ✅'); }; }
+
+    // ——— Carrito UI ———
     const cartModal = el('#cartModal');
     el('#cartBtn').addEventListener('click', ()=>{ cartModal.classList.add('open'); renderCart(); });
     el('#closeCart').addEventListener('click', ()=> cartModal.classList.remove('open'));
@@ -455,16 +474,22 @@
 
     function updateCartCount(){ const c = Object.values(cart).reduce((a,b)=>a+b,0); const badge = el('#cartCount'); badge.textContent = c; badge.style.display = c>0 ? 'inline-block' : 'none'; }
 
-    function renderCart(){ const listEl = el('#cartList'); listEl.innerHTML = ''; const items = cartItems(); if(!items.length){ listEl.innerHTML = '<div class="pill">Tu carrito está vacío</div>'; renderCartTotals(); updateCheckoutLink(); return; } for(const {p, qty} of items){ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; const row = document.createElement('div'); row.className = 'cartitem'; row.innerHTML = `<div><strong>${p.nombre}</strong><br><small class="muted">${p.categoria}</small></div><div class="qty"><button data-id="${p.id}" data-delta="-1">−</button><span>${qty}</span><button data-id="${p.id}" data-delta="1">＋</button></div><div><strong>${priceInCurrency(priceHNL*qty)}</strong></div>`; listEl.appendChild(row); } listEl.querySelectorAll('button[data-id]').forEach(b=> b.addEventListener('click', ()=>{ const id=b.getAttribute('data-id'); const d=parseInt(b.getAttribute('data-delta'),10); setQty(id, (cart[id]||0)+d); })); renderCartTotals(); updateCheckoutLink(); }
+    function renderCart(){ const listEl = el('#cartList'); listEl.innerHTML = ''; const items = cartItems(); if(!items.length){ listEl.innerHTML = '<div class="pill">Tu carrito está vacío</div>'; renderCartTotals(); updateCheckoutLink(); return; } for(const {p, qty} of items){ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; const row = document.createElement('div'); row.className = 'cartitem'; row.innerHTML = `<div><strong>${p.nombre}</strong><br><small class="muted">${p.categoria}</small></div><div class="qty"><button data-id="${p.id}" data-delta="-1">−</button><span>${qty}</span><button data-id="${p.id}" data-delta="1">＋</button></div><div><strong>${priceInCurrency(priceHNL*qty)}</strong></div>`; listEl.appendChild(row); }
+      listEl.querySelectorAll('button[data-id]').forEach(b=> b.addEventListener('click', ()=>{ const id=b.getAttribute('data-id'); const d=parseInt(b.getAttribute('data-delta'),10); setQty(id, (cart[id]||0)+d); })); renderCartTotals(); updateCheckoutLink(); }
 
     function totalsHNL(){ let total=0; for(const {p, qty} of cartItems()){ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; total += priceHNL*qty; } return total; }
     function renderCartTotals(){ const totalHNL = totalsHNL(); const totalUSD = totalHNL / FX_HNL_PER_USD; el('#cartTotal').textContent = state.currency==='USD' ? fmtUSD.format(totalUSD) : fmtHNL.format(totalHNL); el('#cartTotalUSD').textContent = fmtUSD.format(totalUSD); }
 
     function updateCheckoutLink(){ const items = cartItems(); const lines = items.map(({p,qty})=>{ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; const line = `${qty} x ${p.nombre} – ${fmtHNL.format(priceHNL*qty)}`; return line; }); const totalHNL = totalsHNL(); const totalUSD = totalHNL / FX_HNL_PER_USD; const msg = `Hola TecnoMarketHN,%0Aquiero ordenar:%0A- ${lines.join('%0A- ')}%0ATotal: ${fmtHNL.format(totalHNL)} (≈ ${fmtUSD.format(totalUSD)})%0A¿Disponibilidad y tiempo de entrega?`; el('#waCheckout').href = `https://wa.me/50496988240?text=${msg}`; }
 
+    // Inicializar
     function init(){ apply(); updateCartCount(); renderCartTotals(); }
+
+    // Tiempo real: cuando cambie el storage en otra pestaña
     window.addEventListener('storage', (e)=>{ if(e.key===KEY_CART){ const fresh=JSON.parse(localStorage.getItem(KEY_CART)||'{}'); Object.keys(cart).forEach(k=>delete cart[k]); Object.assign(cart, fresh); updateCartCount(); renderCart(); } });
+
     init();
+    // QR y año
     setQR(location.href);
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
