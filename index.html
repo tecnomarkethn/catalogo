@@ -304,37 +304,132 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
     const FX_HNL_PER_USD = 24.70;
 
     const PRODUCTS_BASE = [
-      { id:'p1', nombre:'Lenovo LOQ 15IRH8', categoria:'Laptops', precio:28500, precio_oferta:26990, stock:3, descripcion:'Intel Core i5-12450H · RTX 6GB · 8GB DDR5 · 512GB SSD · 15.6” FHD', imagen:'https://github.com/tecnomarkethn/catalogo/tree/main/assets/img/Lenovo.jpg', imagenes:[
-        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop&sat=1.2'
-      ], disponible:true, etiquetas:['Nuevo'] },
-      { id:'p2', nombre:'iPhone 13 Pro Max 256GB', categoria:'Celulares', precio:17990, precio_oferta:16990, stock:7, descripcion:'Estado excelente · Desbloqueado · 6GB RAM · 256GB · iOS', imagen:'https://images.unsplash.com/photo-1607779097040-26e5c5f5d4d1?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1607779097040-26e5c5f5d4d1?w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:['Oferta'] },
-      { id:'p3', nombre:'SSD NVMe 1TB', categoria:'Accesorios', precio:3290, stock:15, descripcion:'Lectura hasta 3500MB/s · Garantía 12 meses', imagen:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:[] },
-      { id:'p4', nombre:'Dell Latitude 7420', categoria:'Laptops', precio:18900, precio_oferta:0, stock:0, descripcion:'Core i7 · 16GB RAM · 512GB SSD · 14” FHD · Teclado iluminado', imagen:'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&auto=format&fit=crop'
-      ], disponible:false, etiquetas:['Oferta'] },
-      { id:'p5', nombre:'Cargador 65W USB-C', categoria:'Accesorios', precio:690, stock:25, descripcion:'Power Delivery · Ideal para laptops y teléfonos', imagen:'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:['Nuevo'] },
-      { id:'p6', nombre:'Samsung Galaxy S23 256GB', categoria:'Celulares', precio:20990, stock:4, descripcion:'Pantalla AMOLED 120Hz · Cámara Pro · 5G', imagen:'https://images.unsplash.com/photo-1609692814858-f9de252cbb58?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1609692814858-f9de252cbb58?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:[] },
-      { id:'p7', nombre:'Mouse Inalámbrico', categoria:'Accesorios', precio:350, stock:12, descripcion:'Silencioso · 2.4GHz · Bajo consumo', imagen:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:[] },
-      { id:'p8', nombre:'Servicio Técnico – Formateo y Optimización', categoria:'Otros', precio:850, stock:99, descripcion:'Instalación limpia, drivers, suite básica y consejos de mantenimiento', imagen:'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:[] },
-	  { id:'p9', nombre:'CPU DELL Optiplex 3050 ', categoria:'Computadoras', precio:3500, stock:5, descripcion:'Intel Core i5-6600 · 8GB DDR4 · 250GB SSD · Windows11', imagen:'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop'
-      ], disponible:true, etiquetas:[] },
-    ];
+  {
+    id:'p1',
+    nombre:'Lenovo LOQ 15IRH8',
+    categoria:'Laptops',
+    precio:28500,
+    precio_oferta:26990,
+    stock:3,
+    descripcion:'Intel Core i5-12450H · RTX 6GB · 8GB DDR5 · 512GB SSD · 15.6” FHD',
+    imagen:'assets/img/p1-1.jpg',
+    imagenes:[
+      'assets/img/p1-1.jpg',
+      'assets/img/p1-2.jpg',
+      'assets/img/p1-3.jpg'
+    ],
+    disponible:true,
+    etiquetas:['Nuevo']
+  },
+
+  {
+    id:'p2',
+    nombre:'iPhone 13 Pro Max 256GB',
+    categoria:'Celulares',
+    precio:17990,
+    precio_oferta:16990,
+    stock:7,
+    descripcion:'Estado excelente · Desbloqueado · 6GB RAM · 256GB · iOS',
+    imagen:'assets/img/p2-1.jpg',
+    imagenes:[
+      'assets/img/p2-1.jpg',
+      'assets/img/p2-2.jpg'
+    ],
+    disponible:true,
+    etiquetas:['Oferta']
+  },
+
+  {
+    id:'p3',
+    nombre:'SSD NVMe 1TB',
+    categoria:'Accesorios',
+    precio:3290,
+    stock:15,
+    descripcion:'Lectura hasta 3500MB/s · Garantía 12 meses',
+    imagen:'assets/img/p3-1.jpg',
+    imagenes:[
+      'assets/img/p3-1.jpg'
+    ],
+    disponible:true,
+    etiquetas:[]
+  },
+
+  {
+    id:'p4',
+    nombre:'Dell Latitude 7420',
+    categoria:'Laptops',
+    precio:18900,
+    precio_oferta:0,
+    stock:0,
+    descripcion:'Core i7 · 16GB RAM · 512GB SSD · 14” FHD · Teclado iluminado',
+    imagen:'assets/img/p4-1.jpg',
+    imagenes:[
+      'assets/img/p4-1.jpg'
+    ],
+    disponible:false,
+    etiquetas:['Oferta']
+  },
+
+  {
+    id:'p5',
+    nombre:'Cargador 65W USB-C',
+    categoria:'Accesorios',
+    precio:690,
+    stock:25,
+    descripcion:'Power Delivery · Ideal para laptops y teléfonos',
+    imagen:'assets/img/p5-1.jpg',
+    imagenes:[
+      'assets/img/p5-1.jpg'
+    ],
+    disponible:true,
+    etiquetas:['Nuevo']
+  },
+
+  {
+    id:'p6',
+    nombre:'Samsung Galaxy S23 256GB',
+    categoria:'Celulares',
+    precio:20990,
+    stock:4,
+    descripcion:'Pantalla AMOLED 120Hz · Cámara Pro · 5G',
+    imagen:'assets/img/p6-1.jpg',
+    imagenes:[
+      'assets/img/p6-1.jpg'
+    ],
+    disponible:true,
+    etiquetas:[]
+  },
+
+  {
+    id:'p7',
+    nombre:'Mouse Inalámbrico',
+    categoria:'Accesorios',
+    precio:350,
+    stock:12,
+    descripcion:'Silencioso · 2.4GHz · Bajo consumo',
+    imagen:'assets/img/p7-1.jpg',
+    imagenes:[
+      'assets/img/p7-1.jpg'
+    ],
+    disponible:true,
+    etiquetas:[]
+  },
+
+  {
+    id:'p8',
+    nombre:'Servicio Técnico – Formateo y Optimización',
+    categoria:'Otros',
+    precio:850,
+    stock:99,
+    descripcion:'Instalación limpia, drivers, suite básica y consejos de mantenimiento',
+    imagen:'assets/img/p8-1.jpg',
+    imagenes:[
+      'assets/img/p8-1.jpg'
+    ],
+    disponible:true,
+    etiquetas:[]
+  }
+];
 
     const KEY_ACTIVE = 'tmhn_activos_v1';
     const KEY_VISITS = 'tmhn_visitas_v1';
