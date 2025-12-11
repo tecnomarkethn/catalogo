@@ -229,7 +229,7 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
         </select>
         <select id="currency" class="input" style="max-width:140px">
           <option value="HNL">HNL (Lempiras)</option>
-          <option value="USD">USD (Dólares)</option>
+          <!--<option value="USD">USD (Dólares)</option>-->
         </select>
         <select id="pageSize" class="input" style="max-width:160px">
           <option value="8">8 por página</option>
@@ -353,7 +353,7 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
     function incVisit(id){ visitas[id] = (visitas[id]||0) + 1; localStorage.setItem(KEY_VISITS, JSON.stringify(visitas)); }
 
     const fmtHNL = new Intl.NumberFormat('es-HN', { style:'currency', currency:'HNL', maximumFractionDigits:0 });
-    const fmtUSD = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:2 });
+    <!--const fmtUSD = new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', maximumFractionDigits:2 });
     const el = (s) => document.querySelector(s);
     const grid = el('#grid');
     const pnums = el('#pnums');
@@ -475,7 +475,7 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
     function renderCart(){ const listEl = el('#cartList'); listEl.innerHTML = ''; const items = cartItems(); if(!items.length){ listEl.innerHTML = '<div class="pill">Tu carrito está vacío</div>'; renderCartTotals(); updateCheckoutLink(); return; } for(const {p, qty} of items){ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; const row = document.createElement('div'); row.className = 'cartitem'; row.innerHTML = `<div><strong>${p.nombre}</strong><br><small class="muted">${p.categoria}</small></div><div class="qty"><button data-id="${p.id}" data-delta="-1">−</button><span>${qty}</span><button data-id="${p.id}" data-delta="1">＋</button></div><div><strong>${priceInCurrency(priceHNL*qty)}</strong></div>`; listEl.appendChild(row); } listEl.querySelectorAll('button[data-id]').forEach(b=> b.addEventListener('click', ()=>{ const id=b.getAttribute('data-id'); const d=parseInt(b.getAttribute('data-delta'),10); setQty(id, (cart[id]||0)+d); })); renderCartTotals(); updateCheckoutLink(); }
 
     function totalsHNL(){ let total=0; for(const {p, qty} of cartItems()){ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; total += priceHNL*qty; } return total; }
-    function renderCartTotals(){ const totalHNL = totalsHNL(); const totalUSD = totalHNL / FX_HNL_PER_USD; el('#cartTotal').textContent = state.currency==='USD' ? fmtUSD.format(totalUSD) : fmtHNL.format(totalHNL); el('#cartTotalUSD').textContent = fmtUSD.format(totalUSD); }
+    <!--function renderCartTotals(){ const totalHNL = totalsHNL(); const totalUSD = totalHNL / FX_HNL_PER_USD; el('#cartTotal').textContent = state.currency==='USD' ? fmtUSD.format(totalUSD) : fmtHNL.format(totalHNL); el('#cartTotalUSD').textContent = fmtUSD.format(totalUSD); }
 
     function updateCheckoutLink(){ const items = cartItems(); const lines = items.map(({p,qty})=>{ const priceHNL = (p.precio_oferta && p.precio_oferta>0 && p.precio_oferta<p.precio) ? p.precio_oferta : p.precio; const line = `${qty} x ${p.nombre} – ${fmtHNL.format(priceHNL*qty)}`; return line; }); const totalHNL = totalsHNL(); const totalUSD = totalHNL / FX_HNL_PER_USD; const msg = `Hola TecnoMarketHN,%0Aquiero ordenar:%0A- ${lines.join('%0A- ')}%0ATotal: ${fmtHNL.format(totalHNL)} (≈ ${fmtUSD.format(totalUSD)})%0A¿Disponibilidad y tiempo de entrega?`; el('#waCheckout').href = `https://wa.me/50496988240?text=${msg}`; }
 
