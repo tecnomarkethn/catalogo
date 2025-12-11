@@ -195,9 +195,10 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
         <button id="themeBtn" class="chip" title="Cambiar tema">🌗 Tema</button>
         <button class="chip active" data-cat="todos">Todos</button>
         <button class="chip" data-cat="Laptops">Laptops</button>
+		<button class="chip" data-cat="Computadoras">Computadoras</button> 
         <button class="chip" data-cat="Celulares">Celulares</button>
         <button class="chip" data-cat="Accesorios">Accesorios</button>
-        <button class="chip" data-cat="Otros">Otros</button>
+        <button class="chip" data-cat="Otros">Otros</button> 
         <!--<button class="chip" data-tag="Nuevo"># Nuevo</button>-->
         <!--<button class="chip" data-tag="Oferta"># Oferta</button>-->
         <!--<button id="cartBtn" class="btn cartbtn" title="Carrito">🛒 Carrito <span id="cartCount" class="badgecount" style="display:none">0</span></button> -->
@@ -303,10 +304,7 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
     const FX_HNL_PER_USD = 24.70;
 
     const PRODUCTS_BASE = [
-      { id:'p1', nombre:'Lenovo LOQ 15IRH8', categoria:'Laptops', precio:28500, precio_oferta:26990, stock:3, descripcion:'Intel Core i5-12450H · RTX 6GB · 8GB DDR5 · 512GB SSD · 15.6” FHD', imagen:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop', imagenes:[
-        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop&sat=1.2'
+      { id:'p1', nombre:'Lenovo LOQ 15IRH8', categoria:'Laptops', precio:28500, precio_oferta:26990, stock:3, descripcion:'Intel Core i5-12450H · RTX 6GB · 8GB DDR5 · 512GB SSD · 15.6” FHD', imagen:'assets/img/Lenovo.jpg',
       ], disponible:true, etiquetas:['Nuevo'] },
       { id:'p2', nombre:'iPhone 13 Pro Max 256GB', categoria:'Celulares', precio:17990, precio_oferta:16990, stock:7, descripcion:'Estado excelente · Desbloqueado · 6GB RAM · 256GB · iOS', imagen:'https://images.unsplash.com/photo-1607779097040-26e5c5f5d4d1?w=1200&auto=format&fit=crop', imagenes:[
         'https://images.unsplash.com/photo-1607779097040-26e5c5f5d4d1?w=1200&auto=format&fit=crop',
@@ -328,6 +326,9 @@ html { font-size: clamp(14px, 1.2vw, 16px); }
         'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&auto=format&fit=crop'
       ], disponible:true, etiquetas:[] },
       { id:'p8', nombre:'Servicio Técnico – Formateo y Optimización', categoria:'Otros', precio:850, stock:99, descripcion:'Instalación limpia, drivers, suite básica y consejos de mantenimiento', imagen:'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop', imagenes:[
+        'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop'
+      ], disponible:true, etiquetas:[] },
+	  { id:'p9', nombre:'CPU DELL Optiplex 3050 ', categoria:'Computadoras', precio:3500, stock:5, descripcion:'Intel Core i5-6600 · 8GB DDR4 · 250GB SSD · Windows11', imagen:'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop', imagenes:[
         'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&auto=format&fit=crop'
       ], disponible:true, etiquetas:[] },
     ];
